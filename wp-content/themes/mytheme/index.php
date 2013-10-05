@@ -16,8 +16,10 @@
                     <div class="span9">
                         <?php if (is_category()): ?>
                             <?php require_once 'category-ga.php'; ?>
-                        <?php else: ?>
+                        <?php elseif (is_page()): ?>
                             <?php require_once 'page-ga.php'; ?>
+                        <?php elseif (is_single()): ?>
+                            <?php require_once 'single-ga.php'; ?>
                         <?php endif; ?>                            
                     </div>
                     <!-- sidebar -->
