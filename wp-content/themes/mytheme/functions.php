@@ -40,7 +40,8 @@ function getContainerPreviews()
     if ($attachments) {
         foreach ($attachments as $attachment) {
             $class = "post-attachment mime-" . sanitize_title($attachment->post_mime_type);
-            $thumbimg = "<a href='javascript:void(0)'>";
+            $thumbimgLarge = wp_get_attachment_image_src($attachment->ID, 'page-preview', true);
+            $thumbimg = "<a href='javascript:void(0)' data-url-large='$thumbimgLarge[0]'>";            
             $thumbimg .= wp_get_attachment_image($attachment->ID, 'thumbnail', true);
             $thumbimg .= "</a>";
             $result .= '<li class="' . $class . ' data-design-thumbnail">' . $thumbimg . '</li>';            

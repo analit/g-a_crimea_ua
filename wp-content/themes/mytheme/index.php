@@ -20,6 +20,8 @@
                             <?php require_once 'page-ga.php'; ?>
                         <?php elseif (is_single()): ?>
                             <?php require_once 'single-ga.php'; ?>
+                        <?php elseif (is_404()): ?>
+                            <?php require_once '404-ga.php'; ?>
                         <?php endif; ?>                            
                     </div>
                     <!-- sidebar -->

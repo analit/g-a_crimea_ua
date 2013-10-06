@@ -1,3 +1,10 @@
+<?php $category = get_the_category()?>
+<?php $fileCategory = "category-ga-" . $category[0]->term_id . ".php" ?>
+<?php if (file_exists(__DIR__ . "/" . $fileCategory)): ?>
+    <?php require_once $fileCategory; ?>
+    <?php return; ?>
+<?php endif ?>
+
 <div class="sites-galary" >
     <ul>
         <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
