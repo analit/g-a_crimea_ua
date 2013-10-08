@@ -8,16 +8,18 @@
         <div class="main-wrapper">
 
             <?php get_header('top') ?>
-
             <!-- main content -->
             <div class="container">
                 <div class="row-fluid">
                     <!-- main content -->
+                    <?php var_dump(is_search())?>
                     <div class="span9">
                         <?php if (is_category()): ?>
                             <?php require_once 'category-ga.php'; ?>
                         <?php elseif (is_page()): ?>
                             <?php require_once 'page-ga.php'; ?>
+                        <?php elseif (is_search()): ?>
+                            <?php require_once 'search-ga.php'; ?>
                         <?php elseif (is_single()): ?>
                             <?php require_once 'single-ga.php'; ?>
                         <?php elseif (is_404()): ?>

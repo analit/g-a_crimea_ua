@@ -1,13 +1,14 @@
-
-
-
-
 <?php wp_enqueue_script('load-large-image', "/wp-content/themes/mytheme/js/my/loadLargeImage.js"); ?> 
 <?php the_post() ?>
 <div class="span9">    
     <div class="w-box-content cnt_a" style="border-top: solid 1px #CCCCCC">
         <!--<img src="wp-content/uploads/2013/09/082_crimea_ua.png"/>-->
         <?php the_post_thumbnail('page-preview'); ?>
+    </div>
+    <div class="navigation">
+        <?php ?>
+        <span class="previous-entries"><?php next_posts_link('Вперед') ?></span>
+        <span class="next-entries"><?php previous_posts_link('Назад') ?></span>
     </div>
 </div>
 <div class="span3">
@@ -45,8 +46,9 @@
         </table>
     </div>
 </div>
+
 <script type="text/javascript">
     window.onload = function() {
-        $( ".container-preview" ).loadLargeImage($(".attachment-page-preview"));
+        $( ".container-preview" ).loadLargeImage( $( ".attachment-page-preview" ) );
     };
 </script>
