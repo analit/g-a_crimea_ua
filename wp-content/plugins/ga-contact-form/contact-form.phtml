@@ -1,0 +1,34 @@
+<?php
+
+$form = $this->element;
+
+$renderElement = function($name, $label) use ($form) {
+    $element = $form->getElement($name);
+    $mapErrors = $form->getRuErrorMessage();
+    echo sprintf('<div class="formSep%s">', count($element->getErrors()) ? " f-error" : "");
+    echo sprintf('<label class="req" for="%s">%s</label>', $name, $label);
+    echo $element->renderViewHelper();
+    foreach ($element->getErrors() as $errorKey) {
+        echo sprintf('<label for="%s" generated="true" class="error">%s</label>', $name, $mapErrors[$errorKey]);
+    }
+    echo '</div>';
+}
+?>
+
+<div class="w-box w-box-blue">
+    <div class="w-box-header">
+        <h4>Отправить сообщение</h4>
+    </div>
+    <div class="w-box-content"><form action="" method="post">
+            <div id="contact">                
+                <?php $renderElement('myname', 'Ваше имя') ?>
+                <?php $renderElement('email', 'Ваш e-mail адрес') ?>
+                <?php $renderElement('subject', 'Тема сообщения') ?>
+                <?php $renderElement('body', 'Текст сообщения') ?>                       
+            </div>
+            <div class="formSep btnContainer">
+                <button class="btn" type="submit">Отправить</button>
+            </div>
+        </form>
+    </div>
+</div>

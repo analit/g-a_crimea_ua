@@ -22,13 +22,15 @@
 
 <!-- header -->
 <header>
-    <div class="container">
-        <div class="row">
-            <div class="span3">
-                <div class="main-logo">
-                    <a href="<?php bloginfo('url'); ?>">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/logo_IT_v11.png" alt="G-Algorithm">
-                    </a>
+    <div class="container head-background">
+        <div class="container">
+            <div class="row">
+                <div class="span3">
+                    <div class="main-logo">
+                        <a href="<?php bloginfo('url'); ?>">
+                            <img src="<?php echo get_template_directory_uri(); ?>/img/logo_IT_v11.png" alt="G-Algorithm">
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,5 +1,14 @@
-<?php wp_enqueue_script('load-large-image', "/wp-content/themes/mytheme/js/my/loadLargeImage.js"); ?> 
 <?php the_post() ?>
+
+<?php // if notes ... ?>
+<?php $categories = get_the_category()?>
+<?php if($categories[0]->term_id == 11):?>
+    <?php require_once 'single-ga-note.php';?>
+    <?php return; ?>
+<?php endif; ?>
+
+<?php wp_enqueue_script('load-large-image', "/wp-content/themes/mytheme/js/my/loadLargeImage.js"); ?> 
+
 <div class="span9">    
     <div class="w-box-content cnt_a" style="border-top: solid 1px #CCCCCC">
         <!--<img src="wp-content/uploads/2013/09/082_crimea_ua.png"/>-->

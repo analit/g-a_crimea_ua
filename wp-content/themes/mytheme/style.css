@@ -18,6 +18,15 @@ Use it to make something cool, have fun, and share what you've learned with othe
     width: 1000px
 }
 
+header {
+    padding: 0;
+}
+
+.container.head-background {
+    padding: 62px 0 24px;
+    background: url(img/star.png) no-repeat center center
+}
+
 .sites-galary ul, .sites-galary li {
     margin: 0;
     padding: 0;
@@ -93,3 +102,24 @@ p.main_head {color:#424242;font-size:30px;margin-bottom:30px}
 p.sub_head {color:#BCBCBC;font-size:12px;text-transform:uppercase;line-height:1.3;margin-bottom:10px}
 p.sub_head a {color:#3299BB;text-decoration:none}
 p.sub_head a:hover {text-decoration:underline}
+
+.ubuntu h5 {
+    margin-top: 25px;
+}
+
+ul.notes-list,  ul.notes-list >li {
+    margin: 0; padding: 0; list-style: none;
+}
+
+.address-block{
+    margin-top: 30px;
+    font-size: 14px;
+}
+
+.address-block .address {
+    margin-bottom: 10px;
+}
+.address-block .address table th {
+    width: 60px;
+    text-align: left;
+}
