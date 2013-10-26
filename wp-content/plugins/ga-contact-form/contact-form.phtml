@@ -15,11 +15,12 @@ $renderElement = function($name, $label) use ($form) {
 }
 ?>
 
-<div class="w-box w-box-blue">
+<div class="w-box w-box-blue contact-form">
     <div class="w-box-header">
         <h4>Отправить сообщение</h4>
     </div>
-    <div class="w-box-content"><form action="" method="post">
+    <div class="w-box-content">
+        <form action="" method="post">
             <div id="contact">                
                 <?php $renderElement('myname', 'Ваше имя') ?>
                 <?php $renderElement('email', 'Ваш e-mail адрес') ?>

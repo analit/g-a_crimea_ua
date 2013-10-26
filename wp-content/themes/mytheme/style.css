@@ -110,7 +110,7 @@ p.sub_head a:hover {text-decoration:underline}
 ul.notes-list,  ul.notes-list >li {
     margin: 0; padding: 0; list-style: none;
 }
-
+/* contacts */
 .address-block{
     margin-top: 30px;
     font-size: 14px;
@@ -122,4 +122,8 @@ ul.notes-list,  ul.notes-list >li {
 .address-block .address table th {
     width: 60px;
     text-align: left;
+}
+
+.contact-form {
+    width: 70%
 }
