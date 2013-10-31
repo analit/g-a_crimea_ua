@@ -5,124 +5,137 @@ require_once 'Category.php';
 require_once 'Node.php';
 require_once 'Root.php';
 
-class Container {
+class Container
+{
 
     /**
      *
      * @var wpdb
      */
     private $_db;
+    /*
+     * Root
+     */
+    private $_root;
 
     function __construct()
     {
         global $wpdb;
         $this->_db = $wpdb;
-//        $this->init();
+        $this->init();
+    }
+
+    public function getRoot()
+    {
+        return $this->_root;
     }
 
     private function init()
     {
-        $posts = $this->_getPosts();
-        $categories = $this->_getTreeCategories();
-        $relationships = $this->_getRelationships();
-//        var_dump(count($categories));
+        $this->_createTreeObjects();
     }
 
-    private function _getRelationships()
+    private function _createTreeObjects()
     {
-        return $this->_db->get_results("select * from {$this->_db->term_relationships}");
+
+        $categories = $this->_getCategories();
+        $treeCategories = $this->createTree($categories);
+
+        $posts = $this->_getPosts();
+        $treePosts = $this->createTree($posts);
+
+        $this->addPostsParentCategory($treePosts);
+
+        // create tree ...
+        foreach ($treePosts->getPages() as $post){
+            $treeCategories->appendPage($post);
+        }
+
+        $this->_root = $treeCategories;
+
+    }
+
+    private function addPostsParentCategory(Root $treePosts)
+    {
+        $relationships = $this->_db->get_results("select * from {$this->_db->term_relationships}");
+        $mapRelationships = array();
+
+        foreach ($relationships as $relationship) {
+            $mapRelationships[$relationship->object_id] = $relationship->term_taxonomy_id;
+        }
+
+        foreach ($treePosts->getPages() as $post){
+            if (isset($mapRelationships[$post->getId()])){
+                $post->setParentId($mapRelationships[$post->getId()]);
+            }
+        }
     }
 
     private function _getPosts()
     {
         $rows = $this->_db->get_results(
-                "select * from {$this->_db->posts}"
-                . " where post_type in ('post', 'page')"
+            "select * from {$this->_db->posts}"
+            . " where post_type in ('post', 'page')"
         );
 
-        $posts = array();
-
-        foreach ($rows as $row) {
-            $posts[$row->ID] = new Post($row);
-        }
+        $posts = array_map(function ($row) {
+            return $row->post_type === 'post' ? new Post($row) : new Page($row);
+        }, $rows);
         return $posts;
     }
 
+    /**
+     * @param array $objects
+     * @return Root
+     */
     public function createTree(array $objects)
     {
-        $issetParent = function($id) use ($objects) {
-            $result = array_filter($objects, function(Node $object) {
+        $issetParent = function ($id) use ($objects) {
+            $result = array_filter($objects, function (Node $object) use ($id) {
                 return $object->getId() == $id;
             });
             return count($result);
         };
 
-        $appendInTree = function(Root $root, Node $children ) {
-//            foreach ($tree as $objectInTree) {
-//                if ($objectInTree->getId() == $children->getParentId()) {
-//                    $objectInTree->appendPage($children);
-//                    return true;
-//                }
-//                $iterator = new RecursiveIteratorIterator($categoryInTree);
-//                foreach ($iterator as $objectIterator) {
-//                    if ($objectIterator->getId() == $children->getParentId()) {
-//                        $objectIterator->appendPage($children);
-//                        return true;
-//                    }
-//                }
-//            }
-            
-            $iterator = new RecursiveIteratorIterator($root);
-            foreach ($iterator as $node) {
-                if ($node->getId() == $children->getParentId()) {
-                    $node->appendPage($children);
-                    return true;
-                }
-            }
-            return false;
-        };
-
         $root = new Root();
-        $createTree = function(Root $root) use ($objects, &$createTree, $issetParent) {
+
+        $createTree = function (Root $root, array $objects) use (&$createTree, $issetParent) {
+
+            $noAdded = array();
 
             foreach ($objects as $object) {
-                if (!$issetParent($object->getParentId())) {
+
+                if ($object->getParentId() != 0 && !$issetParent($object->getParentId())) {
                     continue;
                 }
 
-                if ($object->getParentId() != 0 ) {
-                    if ($root->isExistPage($page)){
-                        continue;
-                    }
-                    
-                    $flagAdded = $appendInTree($tree, $object);
-
-                    if (!$flagAdded) {
-                        $createTree($root);
-                    }
-                } else {
-                    $root->appendPage($object);
+                if (!$root->appendPage($object)) {
+                    $noAdded[] = $object;
                 }
+            }
+
+            if (count($noAdded)) {
+                $createTree($root, $noAdded);
             }
         };
 
-        $createTree($root);
+        $createTree($root, $objects);
 
         return $root;
     }
 
-    private function _getTreeCategories()
+    private function _getCategories()
     {
         $sql = "select * from {$this->_db->terms}"
-                . " join {$this->_db->term_taxonomy} on {$this->_db->terms}.term_id = {$this->_db->term_taxonomy}.term_id"
-                . " where taxonomy='category'";
+            . " join {$this->_db->term_taxonomy} on {$this->_db->terms}.term_id = {$this->_db->term_taxonomy}.term_id"
+            . " where taxonomy='category'";
 
         $rows = $this->_db->get_results($sql);
-        
-        $categories = array_map(function($row) {
+
+        $categories = array_map(function ($row) {
             return new Category($row);
         }, $rows);
-        
+
         return $categories;
     }
 

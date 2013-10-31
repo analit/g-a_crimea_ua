@@ -2,13 +2,16 @@
 
 require_once 'Node.php';
 
-abstract class Page implements RecursiveIterator, Node{
+class Page implements RecursiveIterator, Node{
 
-    private $_pages = array();
+    protected $_pages = array();
     private $_position = 0;
+    /**
+     * @var stdClass
+     */
     private $_data;
 
-    function __construct($data)
+    function __construct(stdClass $data)
     {
         $this->_data = $data;
     }
@@ -35,8 +38,6 @@ abstract class Page implements RecursiveIterator, Node{
 
     public function hasChildren()
     {
-//        return count($this->_pages[$this->_position]);
-//        return !empty($this->current()->pages);
         return count($this->_pages[$this->_position]->getPages());
     }
 
@@ -52,7 +53,7 @@ abstract class Page implements RecursiveIterator, Node{
 
     public function rewind()
     {
-        $this->position = 0;
+        $this->_position = 0;
     }
 
     public function valid()
@@ -65,4 +66,23 @@ abstract class Page implements RecursiveIterator, Node{
         $this->_pages[] = $page;
     }
 
+    function getId()
+    {
+        return $this->_data->ID;
+    }
+
+    function getParentId()
+    {
+        return $this->_data->post_parent;
+    }
+
+    public function setParentId($id)
+    {
+        $this->_data->post_parent = $id;
+    }
+
+    function getLabel()
+    {
+        return $this->_data->post_title;
+    }
 }
