@@ -6,6 +6,12 @@ class Page implements RecursiveIterator, Node{
 
     protected $_pages = array();
     private $_position = 0;
+    private $_isActive = false;
+
+    /**
+     * @var Node
+     */
+    private $_parent;
     /**
      * @var stdClass
      */
@@ -64,6 +70,7 @@ class Page implements RecursiveIterator, Node{
     public function appendPage(Page $page)
     {
         $this->_pages[] = $page;
+        $page->setParent($this);
     }
 
     function getId()
@@ -84,5 +91,41 @@ class Page implements RecursiveIterator, Node{
     function getLabel()
     {
         return $this->_data->post_title;
+    }
+
+    function getUrl()
+    {
+        return $this->_data->guid;
+    }
+
+    public function setActive($active)
+    {
+        $this->_isActive = $active;
+    }
+
+    function isActive()
+    {
+        return $this->_isActive;
+    }
+
+    /**
+     * @return Node
+     */
+    function getParent()
+    {
+        return $this->_parent;
+    }
+
+    function setParent(Node $node)
+    {
+        $this->_parent = $node;
+    }
+
+    public function render()
+    {
+        if ($this->_isActive) {
+            return sprintf('<li><span>%s</span></li>', $this->getLabel());
+        }
+        return sprintf('<li><a href="%s">%s</a></li>', $this->getUrl(), $this->getLabel());
     }
 }

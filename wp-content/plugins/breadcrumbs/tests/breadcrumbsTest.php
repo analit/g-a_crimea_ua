@@ -9,8 +9,10 @@ class Tests_Actions extends WP_UnitTestCase
 
     public function testBreadcrumbs()
     {
+        global $wp;
+        var_dump($wp);
         $container = new Container();
-        var_dump($container->getRoot());
+        var_dump($container->getBreadcrumbs("http://localhost/ga_crimea_ua/?p=14"));
         $this->assertTrue(true);
     }
 

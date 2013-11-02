@@ -45,7 +45,7 @@
                     <th>Ссылка</th>
                     <td>
                         <?php $link = get_post_meta(get_the_ID(), 'link', true) ?>
-                        <a href="<?php echo $link ?>" target="_blank">
+                        <a href="http://<?php echo $link ?>" target="_blank">
                             <?php echo $link ?>
                         </a>
                         &nbsp; &rarr;

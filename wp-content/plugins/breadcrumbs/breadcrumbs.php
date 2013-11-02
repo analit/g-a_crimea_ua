@@ -15,5 +15,5 @@ require_once 'Container.php';
 function breadcrumbs()
 {
     $container = new Container();
-    return 'breadcrumbs ...';
+    return $container->getBreadcrumbs();
 }

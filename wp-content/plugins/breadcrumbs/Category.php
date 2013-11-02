@@ -19,4 +19,9 @@ class Category extends Page {
         return $this->getData()->name;
     }
 
+    public function getUrl()
+    {
+        return get_category_link($this->getId());
+    }
+
 }

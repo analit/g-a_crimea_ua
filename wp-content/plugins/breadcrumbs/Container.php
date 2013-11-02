@@ -30,6 +30,19 @@ class Container
         return $this->_root;
     }
 
+    public function getBreadcrumbs($url = null)
+    {
+        if (!$url){
+            $url = $this->getCurrentUrl();
+        }
+        return $this->_root->getBreadcrumbs($url);
+    }
+
+    public function getCurrentUrl()
+    {
+        return "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+    }
+
     private function init()
     {
         $this->_createTreeObjects();

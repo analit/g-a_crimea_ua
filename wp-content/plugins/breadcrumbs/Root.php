@@ -22,6 +22,48 @@ class Root extends Page
         return 0;
     }
 
+    public function getBreadcrumbs($url, $delimiter = "")
+    {
+        $currentPage = null;
+        $iterator = new RecursiveIteratorIterator($this, RecursiveIteratorIterator::CHILD_FIRST);
+        /* @var $node Node */
+        foreach ($iterator as $node) {
+            if ($node->getUrl() == $url) {
+                $node->setActive(true);
+                $currentPage = $node;
+                break;
+            }
+        }
+
+        if (!$currentPage) {
+            return null;
+        }
+
+        $breadcrumbs = array();
+        $renderBreadcrumbs = function (Node $currentPage) use (&$renderBreadcrumbs, &$breadcrumbs, $delimiter) {
+            $breadcrumbs [] = $currentPage->render();
+            $parentPage = $currentPage->getParent();
+            if ($parentPage) {
+                $renderBreadcrumbs($parentPage);
+            }
+        };
+
+        $renderBreadcrumbs($currentPage);
+
+        // main page
+        $breadcrumbs[] = $this->render();
+
+        $htmlBreadcrumbs = implode($delimiter, array_reverse($breadcrumbs));
+        $htmlBreadcrumbs = sprintf('<ul id="breadcrumbs">%s</a>', $htmlBreadcrumbs);
+        return $htmlBreadcrumbs;
+    }
+
+    public function render()
+    {
+        return sprintf('<li><a href="%s"><i class="icon-home"></i></a></li>', get_bloginfo('url'));
+    }
+
+
     public function appendPage(Page $page)
     {
         if ($page->getParentId() == 0) {
