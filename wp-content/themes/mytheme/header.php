@@ -17,7 +17,10 @@
 <!-- flag icons -->
 <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/img/flags/flags.css">
 <!-- power tooltips -->
-<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/js/lib/powertip/jquery.powertip.css">        
+<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/js/lib/powertip/jquery.powertip.css">
+
+<link type="image/x-icon" rel="icon" href="<?php echo get_template_directory_uri(); ?>/img/LogoGA.ico">
+<link type="image/x-icon" rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/img/LogoGA.ico">
 
 <!-- aditional stylesheets -->
 

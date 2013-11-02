@@ -3,14 +3,10 @@
     <div class="container">
         <div class="row">
             <div class="span4">
-                <div>&copy; G-Algorithm 2013</div>
+                <div>&copy; G-Algorithm 2013 | тел. 050-274-00-35</div>
             </div>
             <div class="span6">
-                <ul class="unstyled">
-                    <li><a href="#">First link</a></li>
-                    <li>&middot;</li>
-                    <li><a href="#">Second link</a></li>
-                </ul>
+
             </div>
         </div>
     </div>

@@ -5,7 +5,7 @@
     <div class="navbar-inner">
         <div class="container">
             <div class="pull-right top-search">                
-                <?php get_search_form(); ?> 
+                <?php //get_search_form(); ?>
             </div>
 
             <?php

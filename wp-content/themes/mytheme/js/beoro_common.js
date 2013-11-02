@@ -41,7 +41,7 @@
         });
 
         //* background switch
-        beoro_bgSwitch.init();
+//        beoro_bgSwitch.init();
         
         //* scroll to top button
         beoro_scrollToTop.init();

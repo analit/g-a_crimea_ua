@@ -29,6 +29,7 @@ class ContactForm extends Zend_Form {
 
         $this->addElement('text', 'subject', array(
             'class' => 'span10',
+            'required' => true,
             'attribs' => array(
 //                'required' => 'required'
             ),
@@ -36,6 +37,7 @@ class ContactForm extends Zend_Form {
 
         $this->addElement('textarea', 'body', array(
             'class' => 'span10',
+            'required' => true,
             'rows' => '5',
             'attribs' => array(
 //                'required' => 'required',
