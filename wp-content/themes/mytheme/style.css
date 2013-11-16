@@ -127,3 +127,7 @@ ul.notes-list,  ul.notes-list >li {
 .contact-form {
     width: 70%
 }
+
+footer .counter {
+    float: right
+}
