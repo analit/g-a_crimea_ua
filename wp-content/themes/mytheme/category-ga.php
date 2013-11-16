@@ -1,8 +1,12 @@
-<?php $category = get_the_category()?>
+<?php $category = get_the_category() ?>
+<?php if (!count($category)): ?>
+    <p>Пока нет разработанных сайтов для данной категории ...</p>
+    <?php return ?>
+<?php endif; ?>
 <?php $fileCategory = "category-ga-" . $category[0]->term_id . ".php" ?>
 <?php if (file_exists(__DIR__ . "/" . $fileCategory)): ?>
     <?php require_once $fileCategory; ?>
-    <?php return; ?>
+    <?php return ?>
 <?php endif ?>
 
 <div class="sites-galary" >
