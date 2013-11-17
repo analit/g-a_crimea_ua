@@ -21,7 +21,7 @@ add_shortcode('main-slider', function () {
     $posts = $query->get_posts();
 
     shuffle($posts);
-    $posts = array_slice($posts, 0, 9);
+    $posts = array_slice($posts, 0, 6);
 
     require_once 'tamplate-slider.php';
 });

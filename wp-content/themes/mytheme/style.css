@@ -131,3 +131,20 @@ ul.notes-list,  ul.notes-list >li {
 footer .counter {
     float: right
 }
+
+.blog_content.about {
+    padding: 80px;
+    line-height: 180%;
+    font-size: 14px;
+    text-align: justify;    
+}
+
+.blog_content.about p {
+    margin-bottom: 20px;
+}
+
+.blog_content.about p.signature {
+    text-align: right;
+    margin-top: 50px;
+    margin-bottom: 0;
+}

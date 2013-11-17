@@ -8,9 +8,7 @@
                 <a href="<?php echo post_permalink( $post->ID )?>">
                     <span class="img_holder">
                         <?php echo get_the_post_thumbnail($post->ID, array(300, 300), array('class'	=> "attachment-post-thumbnail wp-post-image",)); ?>
-                        <!--                        <img alt="082_crimea_ua" class="attachment-post-thumbnail wp-post-image" src="wp-content/uploads/2013/10/082_crimea_ua-300x300.png">-->
                         <span class="imgTitle"><?php echo $post->post_title ?></span>
-
                     </span>
                 </a> 
                 <div class="slider-site-info">

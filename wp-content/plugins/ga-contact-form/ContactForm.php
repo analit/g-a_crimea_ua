@@ -22,6 +22,7 @@ class ContactForm extends Zend_Form {
         $this->addElement('text', 'email', array(
             'class' => 'span10',
             'required' => true,
+            'validators' => array('EmailAddress'),
             'attribs' => array(
 //                'required' => 'required'
             ),
@@ -56,7 +57,9 @@ class ContactForm extends Zend_Form {
     public function getRuErrorMessage($key = null)
     {
         $messages = array(
-            'isEmpty' => 'Поле не может быть пустым!'
+            'isEmpty' => 'Поле не может быть пустым!',
+            'emailAddressInvalidFormat' => 'Неверный адрес электронной почты!',
+            'emailAddressInvalidHostname' => 'Неверный домен!',
         );
 
         return $key ? $messages[$key] : $messages;
