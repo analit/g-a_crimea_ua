@@ -107,6 +107,19 @@ p.sub_head a:hover {text-decoration:underline}
     margin-top: 25px;
 }
 
+.ubuntu ul, .ubuntu li {
+	list-style: none;
+	margin: 0;	
+}
+
+.ubuntu li {
+	margin-bottom: 5px;
+}
+
+.ubuntu li code {
+	margin-right: 10px;
+}
+
 ul.notes-list,  ul.notes-list >li {
     margin: 0; padding: 0; list-style: none;
 }
