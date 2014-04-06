@@ -25,6 +25,7 @@
                 </li>
             <?php endwhile; ?>
         <?php endif ?>
-    </ul>
+    </ul>    
     <div class="clear"></div>
+    <?php twentythirteen_paging_nav() ?>
 </div>

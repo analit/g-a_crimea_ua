@@ -28,7 +28,9 @@ class Root extends Page
         $iterator = new RecursiveIteratorIterator($this, RecursiveIteratorIterator::CHILD_FIRST);
         /* @var $node Node */
         foreach ($iterator as $node) {
-            if ($node->getUrl() == $url) {
+            $postUrl = $node->getUrl();
+            $position = strpos($url, $postUrl);
+            if ($position === 0) {
                 $node->setActive(true);
                 $currentPage = $node;
                 break;

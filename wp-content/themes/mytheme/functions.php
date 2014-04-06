@@ -50,3 +50,25 @@ function getContainerPreviews()
     $result .= "</ul>";
     return $result;
 }
+
+function twentythirteen_paging_nav() {
+    global $wp_query;
+
+    // Don't print empty markup if there's only one page.
+    if ( $wp_query->max_num_pages < 2 ){
+        return;
+    }
+    ?>
+    <div class="pagination" role="navigation">
+        <ul>
+            <?php if ( get_previous_posts_link() ) : ?>
+                <li class="nav-next"><?php previous_posts_link('<span class="meta-nav">&larr;</span> Предыдущая страница ' ); ?></li>
+            <?php endif; ?>
+
+            <?php if (get_next_posts_link()) : ?>
+                <li class="nav-previous"><?php next_posts_link('Следующая страница <span class="meta-nav">&rarr;</span>'); ?></li>
+            <?php endif; ?>	
+        </ul>
+    </div>
+    <?php
+}
