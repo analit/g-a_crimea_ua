@@ -95,7 +95,8 @@ class Page implements RecursiveIterator, Node{
 
     function getUrl()
     {
-        return $this->_data->guid;
+//        return $this->_data->guid;
+        return get_page_link($this->getId());
     }
 
     public function setActive($active)

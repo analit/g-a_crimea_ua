@@ -9,7 +9,7 @@ class Root extends Page
     function __construct()
     {
         $data = array('label' => 'Главная');
-        parent::__construct((object)$data);
+        parent::__construct((object) $data);
     }
 
     public function getId()
@@ -29,8 +29,8 @@ class Root extends Page
         /* @var $node Node */
         foreach ($iterator as $node) {
             $postUrl = $node->getUrl();
-            $position = strpos($url, $postUrl);
-            if ($position === 0) {
+
+            if ($postUrl === $url && $postUrl != get_home_url() . "/") {
                 $node->setActive(true);
                 $currentPage = $node;
                 break;
@@ -64,7 +64,6 @@ class Root extends Page
     {
         return sprintf('<li><a href="%s"><i class="icon-home"></i></a></li>', get_bloginfo('url'));
     }
-
 
     public function appendPage(Page $page)
     {
