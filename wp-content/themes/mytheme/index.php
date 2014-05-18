@@ -3,7 +3,7 @@
     <head>
         <?php get_header(); ?> 
     </head>
-    <body class="bg_f">
+    <body class="bg_e">
         <!-- main wrapper (without footer) -->    
         <div class="main-wrapper">
 

@@ -161,3 +161,11 @@ footer .counter {
     margin-top: 50px;
     margin-bottom: 0;
 }
+
+.seo-text {
+    margin: 80px 0;
+}
+
+.seo-text ul li {
+    font-size: 14px;
+}

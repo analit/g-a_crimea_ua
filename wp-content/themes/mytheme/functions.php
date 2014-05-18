@@ -4,6 +4,11 @@ add_theme_support('post-thumbnails'); // поддержка миниатюр
 set_post_thumbnail_size(225, 225, true);
 add_image_size('page-preview', 530, 530);
 
+add_shortcode('link-portfolio', function () {
+    $category_id = get_cat_ID('Портфолио');
+    return get_category_link($category_id);
+});
+
 function mytheme_wp_title($title, $sep)
 {
     $title .= get_bloginfo('name') . ' ' . $sep . ' ' . get_bloginfo('description');
