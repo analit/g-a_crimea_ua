@@ -6,7 +6,18 @@ $renderElement = function($name, $label) use ($form) {
     $mapErrors = $form->getRuErrorMessage();
     echo sprintf('<div class="formSep%s">', count($element->getErrors()) ? " f-error" : "");
     echo sprintf('<label class="req" for="%s">%s</label>', $name, $label);
-    echo $element->renderViewHelper();
+
+    if ($name == 'captcha') {
+        $element->removeDecorator('Errors');
+        $element->removeDecorator('Description');
+        $element->removeDecorator('HtmlTag');
+        $element->removeDecorator('Label');
+        echo $element->render();
+        echo '<span class="help-block">Если буквы непонятны, просто перезагрузите страницу</span>';
+    } else {
+        echo $element->renderViewHelper();
+    }
+
     foreach ($element->getErrors() as $errorKey) {
         if (isset($mapErrors[$errorKey])) {
             $errorMessage = $mapErrors[$errorKey];
@@ -30,6 +41,7 @@ $renderElement = function($name, $label) use ($form) {
                 <?php $renderElement('email', 'Ваш e-mail адрес') ?>
                 <?php $renderElement('subject', 'Тема сообщения') ?>
                 <?php $renderElement('body', 'Текст сообщения') ?>                       
+                <?php $renderElement('captcha', 'Введите 5 букв, изображенных ниже') ?>
             </div>
             <div class="formSep btnContainer">
                 <button class="btn" type="submit">Отправить</button>

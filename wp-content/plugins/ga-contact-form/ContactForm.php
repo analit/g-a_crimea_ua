@@ -36,6 +36,17 @@ class ContactForm extends Zend_Form {
             ),
         ));
 
+        $this->addElement('captcha', 'captcha', array(
+            'label' => 'Please enter the 5 letters displayed below:',
+            'required' => true,
+            'description' => 'Если буквы непонятны, просто перезагрузите страницу',
+            'captcha' => array(
+                'captcha' => 'Figlet',
+                'wordLen' => 5,
+                'timeout' => 300
+            )
+        ));
+
         $this->addElement('textarea', 'body', array(
             'class' => 'span10',
             'required' => true,
@@ -60,6 +71,7 @@ class ContactForm extends Zend_Form {
             'isEmpty' => 'Поле не может быть пустым!',
             'emailAddressInvalidFormat' => 'Неверный адрес электронной почты!',
             'emailAddressInvalidHostname' => 'Неверный домен!',
+            'badCaptcha' => 'Неправильно введены буквы'
         );
 
         return $key ? $messages[$key] : $messages;
