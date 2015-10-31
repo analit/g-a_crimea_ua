@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <div class="span4">
-                <div>&copy; G-Algorithm 2013 | тел. 050-274-00-35</div>
+                <div>&copy; G-Algorithm 2013 | тел. + 380 50-274-00-35</div>
             </div>
             <div class="span6">
                 <div class="counter">
