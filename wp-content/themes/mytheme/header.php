@@ -4,7 +4,8 @@
 
 <title><?php wp_title('|', true, 'right'); ?></title>
 
-<meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,user-scalable=no">        
+<meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,user-scalable=no"> 
+<meta name='freelancehunt-verification' content='57f77e58064f58e' />
 
 <!-- common stylesheets-->
 <!-- bootstrap framework css -->
