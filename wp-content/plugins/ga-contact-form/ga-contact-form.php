@@ -39,6 +39,21 @@ if (count($_POST) && $form->isValid($_POST)) {
 
 function sendMessage($data)
 {
+    $message = "User name: " . $data['myname'] . "\n";
+    $message .= "User e-mail: " . $data['email'] . "\n";
+    $message .= "User message: " . $data['body'] . "\n";
+
+    $mail = new Zend_Mail('utf8');
+    $mail->setBodyText($message);
+    $mail->setFrom('sergei.garyaga@yandex.ua', 'g-a.crimea.ua');
+    $mail->addTo('analit09@mail.ru');
+    $mail->setSubject($data['subject']);
+    $mail->send();
+
+}
+
+function sendMessageYandex($data)
+{
     $config = array(
         'auth' => 'login',
         'username' => 'sergei.garyaga@yandex.ua',
